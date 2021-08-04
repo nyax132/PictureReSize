@@ -144,14 +144,15 @@ namespace PictureReSize
             if (Data.OutputFolderPath == null)
             {
                 var selectpath = new FolderSelecter().FolderSelect();
+                if (selectpath.Length == 0) return;
                 Data.OutputFolderPath = selectpath + @"\";
                 OutputtextBox.Text = selectpath + @"\";
+
                 Console.WriteLine("OutputPath: " + selectpath);
             }
 
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             var quickcon = new QuickConvert();
-
             quickcon.Run(files);
         }
     }
